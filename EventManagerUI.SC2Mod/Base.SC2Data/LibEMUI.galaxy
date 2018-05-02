@@ -1,0 +1,36 @@
+include "TriggerLibs/natives"
+
+include "LibEMUI_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EventManagerUI
+//--------------------------------------------------------------------------------------------------
+// Custom Script
+//--------------------------------------------------------------------------------------------------
+// Custom Script: main
+//--------------------------------------------------------------------------------------------------
+include "Scripts/EventManagerUI"
+void main(){
+    EMUI_Init();
+    return;
+}
+
+void libEMUI_InitCustomScript () {
+    main();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libEMUI_InitLib_completed = false;
+
+void libEMUI_InitLib () {
+    if (libEMUI_InitLib_completed) {
+        return;
+    }
+
+    libEMUI_InitLib_completed = true;
+
+    libEMUI_InitCustomScript();
+}
+

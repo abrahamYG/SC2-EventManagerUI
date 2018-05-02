@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TriggerData>
+    <Library Id="EMUI">
+        <Root>
+            <Item Type="CustomScript" Library="EMUI" Id="878159DA"/>
+        </Root>
+        <Element Type="CustomScript" Id="878159DA">
+            <ScriptCode>
+                include &quot;Scripts/EventManagerUI&quot;
+                void main(){
+                    EMUI_Init();
+                    return;
+                }
+            </ScriptCode>
+            <InitFunc>main</InitFunc>
+        </Element>
+    </Library>
+</TriggerData>

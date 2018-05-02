@@ -1,0 +1,44 @@
+const string EMUI_EVENTMANAGER_DLGPATH = "EventManager";
+const string EMUI_EVENT_PREFIX = "EMUI_";
+
+
+
+int EMUI_EventManagerDlg;
+int EMUI_EventManagerEventDlg;
+int EMUI_EventManagerSourceDlg;
+
+bool EMUI_Dispatch (bool t, bool r) {
+	//playergroup pg = PlayerGroupAll();
+	//EventDialogControl ();
+	int player = EventPlayer ();
+	string Event = EMUI_EVENT_PREFIX + DialogControlGetPropertyAsString(EventDialogControl(), c_triggerControlPropertyEditText, player);
+	string Source = EMUI_EVENT_PREFIX + DialogControlGetPropertyAsString(EMUI_EventManagerSourceDlg, c_triggerControlPropertyEditText, player);
+
+	TriggerDebugOutput(1, StringToText(Event), true);
+	TriggerDebugOutput(1, StringToText(Source), true);	
+	DataTableSetInt (false, TriggerEventParamName (Event, "Player"), player);
+	DataTableSetString (false, TriggerEventParamName (Event, "Event"), Event);
+	DataTableSetString (false, TriggerEventParamName (Event, "Source"), Source);
+	TriggerSendEvent (Event);
+
+	return true;
+}
+
+
+void EMUI_SetTriggers(){
+	trigger trgEMUI_Dispatch = TriggerCreate("EMUI_Dispatch");
+	TriggerAddEventDialogControl(trgEMUI_Dispatch, c_playerAny, EMUI_EventManagerEventDlg, c_triggerControlEventTypeTextChanged);
+}	
+
+
+void EMUI_SetDialogHookups(){
+	EMUI_EventManagerDlg = DialogControlHookupStandard (c_triggerControlTypePanel, EMUI_EVENTMANAGER_DLGPATH);
+	EMUI_EventManagerEventDlg = DialogControlHookup (EMUI_EventManagerDlg, c_triggerControlTypeEditBox, "Event");
+	EMUI_EventManagerSourceDlg = DialogControlHookup (EMUI_EventManagerDlg, c_triggerControlTypeEditBox, "Source");
+}	
+
+
+void EMUI_Init(){
+	EMUI_SetDialogHookups();
+	EMUI_SetTriggers();
+}

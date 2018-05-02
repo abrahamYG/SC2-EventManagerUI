@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+	<Constant name="EventManagerHandle" val="EventManager"/>
+
+	<Frame type="Frame" name="EventManager">
+		<Anchor side="Top" relative="$parent" pos="Max" offset="0"/>
+		<Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
+		<Anchor side="Bottom" relative="$this" pos="Min" offset="0"/>
+		<Anchor side="Right" relative="$this" pos="Min" offset="0"/>
+		<Frame type="EditBox" name="Event">
+			<Anchor relative="$parent"/>
+			<Text val="Event"/>
+		</Frame>
+		<Frame type="EditBox" name="Source">
+			<Anchor relative="$parent"/>
+			<Text val="Source"/>
+			
+		</Frame>
+
+	</Frame>
+	<Frame file="GameUI" name="GameUI" type="Frame">
+		<Frame name="EventManager" template="EventManager/EventManager" type="Frame">
+			<Visible val="false"/>
+			<Handle val="#EventManagerHandle" />
+		</Frame>		
+	</Frame>
+	<Frame file="GameUI" name="GameUI/UIContainer" type="Frame">
+		<Frame type="Button" name="GraphicsButton" template="StandardBattlenetTemplates/BattlenetVerticalTabButtonTemplate">
+            <Anchor side="Top" relative="$parent/" pos="Min" offset="50"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="50"/>
+            <Handle val="Test"/>
+			<StateGroup name="EventState">
+				<DefaultState val="Start"/>
+				<State name="Start" />
+				<State name="Click">
+					<Action type="SetProperty" frame="$EventManager/Event" Text="CLICK"/>
+					<!--<Action type="SetProperty" frame="$EventManager/Source" Text="{@Handle}"/>-->
+				</State>
+			</StateGroup>
+			<Animation name="Hide">
+				<Event event="OnClick" action="Reset,Play" />
+				<Controller type="State" stateGroup="EventState" end="Pause">
+					<Key type="Identifier" time="0" value="Click"/>
+				</Controller>
+			</Animation>
+	
+        </Frame>
+
+	</Frame>
+</Desc>

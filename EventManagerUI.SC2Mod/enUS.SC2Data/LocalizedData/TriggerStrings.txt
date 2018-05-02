@@ -1,0 +1,2 @@
+﻿CustomScript/Name/lib_EMUI_878159DA=main
+Library/Name/EMUI=EventManagerUI
