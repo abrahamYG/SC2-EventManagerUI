@@ -27,14 +27,14 @@
 	<Frame file="GameUI" name="GameUI/UIContainer" type="Frame">
 		<Frame type="Button" name="GraphicsButton" template="StandardBattlenetTemplates/BattlenetVerticalTabButtonTemplate">
             <Anchor side="Top" relative="$parent/" pos="Min" offset="50"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="50"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-50"/>
             <Handle val="Test"/>
 			<StateGroup name="EventState">
 				<DefaultState val="Start"/>
 				<State name="Start" />
 				<State name="Click">
 					<Action type="SetProperty" frame="$EventManager/Event" Text="CLICK"/>
-					<!--<Action type="SetProperty" frame="$EventManager/Source" Text="{@Handle}"/>-->
+					<Action type="SetProperty" frame="$EventManager/Source" Text="{$this/@Handle}"/>
 				</State>
 			</StateGroup>
 			<Animation name="Hide">
